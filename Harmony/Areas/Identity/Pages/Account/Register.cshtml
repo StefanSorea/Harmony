@@ -1,0 +1,65 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div id="background">
+    <img src="/Images/registerPage.jpg" alt="">
+</div>
+
+
+
+<div id="register_container" style="position: absolute; margin-top: 450px; margin-left: 550px">
+
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="margin-top:-200px; width:auto">
+
+            <div class="" style="border-radius: 1rem; margin-left: 52%; width: 120%; margin-top: -225px;">
+
+
+                <h2 class="fw-bold mb-2 text-uppercase" style="font-family: Microsoft Himalaya; font-size: 4em; color: #1e3c45; text-align: center">Registration</h2>
+
+                <p class="fw-bold mb-2 text-uppercase" style="font-family: Microsoft Himalaya; font-size: 1.5em; color: #1e3c45; margin-top: -2.5%; text-align:center">Please enter your email and password!</p>
+
+
+                <div class="form-group" style="width:102%">
+                    <h5 style="font-family: Microsoft Himalaya; font-size: 1.9em; color: #1e3c45; margin-bottom: -1.4% ">Email</h5>
+                    <input asp-for="Input.Email" class="form-control input" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 4%; width: 102% ">
+                    <h5 style="font-family: Microsoft Himalaya; font-size: 1.9em; color: #1e3c45; margin-bottom: -1.4% ">Password</h5>
+                    <input asp-for="Input.Password" class="form-control" />
+                    @*<span asp-validation-for="Input.Password" class="text-danger"></span>*@
+                </div>
+
+                <div class="form-group" style="margin-top: 4%; width: 102%">
+                    <h5 style="font-family: Microsoft Himalaya; font-size: 1.9em; color: #1e3c45; margin-bottom: -1.4% ">Confirm Password</h5>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    @*<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>*@
+                </div>
+
+                
+                <button id="registerButton2" type="submit">Login</button>
+
+
+
+
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

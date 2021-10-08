@@ -1,0 +1,23 @@
+﻿#loginButton2 {
+    position: absolute;
+    left: 320px;
+    top: 202px;
+    width: 180px;
+    height: 85px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size: 0;
+}
+
+#loginButton2:hover {
+    background: url("/Images/loginButton2.png");
+}
+
+p {
+    margin-bottom: -0.9em;
+}
+

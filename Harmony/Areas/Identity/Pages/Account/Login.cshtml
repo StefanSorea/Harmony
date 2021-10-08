@@ -1,0 +1,81 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+    
+
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<div id="background">
+    <img src="/Images/loginPage.jpg" alt="">
+</div>
+
+
+<div id="login_container" style="position: absolute; margin-top: 466px; margin-left: 550px">
+
+    <form id="account" method="post">
+
+
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="margin-top:-160px; width:auto">
+
+            <div class="" style="border-radius: 1rem; margin-left: 45%; width: 120%; margin-top: -225px;">
+
+
+                <h2 class="fw-bold mb-2 text-uppercase" style="font-family: Microsoft Himalaya; font-size: 2.5em; color: #1e3c45; text-align: center">Here is where you log in!</h2>
+
+                <div class="form-group" style="width:102%">
+                    <h5 style="font-family: Microsoft Himalaya; font-size: 2em; color: #1e3c45; margin-bottom: -1.4% ">Email</h5>
+                    <input asp-for="Input.Email" class="form-control input" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 4%; width: 102% ">
+                    <h5 style="font-family: Microsoft Himalaya; font-size: 2em; color: #1e3c45; margin-bottom: -1.4% ">Password</h5>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" style="font-size: 1.1em;">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <button id="loginButton2" type="submit">Login</button>
+
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="form-group" style="position:absolute; margin-top:480px; margin-left:1110px">
+
+    <div id="someId" style="margin-top: 2.7em; margin-left: -24.1em;">
+        <p style="margin-bottom: -0.9em;">
+            <a id="forgot-password" asp-page="./ForgotPassword" style="font-family: Microsoft Himalaya; font-size: 2em; color: black;  ">Forgot your password?</a>
+        </p>
+        <p style="margin-bottom: -0.9em;">
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="font-family: Microsoft Himalaya; font-size: 2em; color: black; ">Register as a new user</a>
+        </p>
+        <p style="margin-bottom: -0.9em;">
+            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" style="font-family: Microsoft Himalaya; font-size: 2em; color: black; ">Resend email confirmation</a>
+        </p>
+    </div>
+    
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

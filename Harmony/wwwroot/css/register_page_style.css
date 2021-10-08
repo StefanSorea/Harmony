@@ -1,0 +1,23 @@
+﻿body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+#registerButton2 {
+    position: absolute;
+    left: 234px;
+    top: 220px;
+    width: 359px;
+    height: 85px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size: 0;
+}
+
+#registerButton2:hover {
+    background: url("/Images/registerButton2.png");
+}

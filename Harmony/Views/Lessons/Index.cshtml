@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Lessons";
+    Layout = "~/Views/Shared/_LessonLayout.cshtml";
+}
+
+<div id="background">
+    <img src="/Images/lessonBackground.jpg" alt="">
+</div>
+
+<head>
+    <link rel="stylesheet" href="~/css/lesson_style.css" />
+</head>
+
+
+<div id="grid-container" style="display: grid; column-gap:6.9em; grid-template-columns: auto auto; margin-left:-36px;">
+
+    <div class="card-container">
+        <div class="card u-clearfix" style="height:520px;">
+            <div class="card-body">
+                <span class="card-number card-circle subtle">01</span>
+                <h2 class="card-title">Your first steps... a history of sound!</h2>
+                <span class="card-description subtle">Read this short introduction to learn about the nature of sound. Discover how physics, art and programming come together!</span>
+                <div class="card-read extra-button" style=" font-size: 1.3em;">Go to lesson</div>
+            </div>
+            <img src="/Images/Lessons/1.jpg" alt="" class="card-media" />
+        </div>
+        <div class="card-shadow"></div>
+    </div>
+
+    <div class="card-container">
+        <div class="card u-clearfix" style="height:520px;">
+            <div class="card-body">
+                <span class="card-number card-circle subtle">02</span>
+                <h2 class="card-title">Meet the notes. Find which scale they visit.</h2>
+                <span class="card-description subtle">This will be your introduction to scales and notes. You will soon discover their characteristics and how to put them together. Remember: intervals.</span>
+                <div class="card-read extra-button" style=" font-size: 1.3em;">Go to lesson</div>
+            </div>
+            <img src="/Images/Lessons/2.jpg" alt="" class="card-media" />
+        </div>
+        <div class="card-shadow"></div>
+    </div>
+
+    <div class="card-container">
+        <div class="card u-clearfix" style="height:520px;">
+            <div class="card-body">
+                <span class="card-number card-circle subtle">03</span>
+                <h2 class="card-title">Chords,and how they like to play together.</h2>
+                <span class="card-description subtle">Chords don't all like each other. Some chords like each other more than others. Notes make chords and guess what? They like intervals.  </span>
+                <div class="card-read extra-button" style=" font-size: 1.3em;">Go to lesson</div>
+            </div>
+            <img src="/Images/Lessons/3.jpg" alt="" class="card-media" />
+        </div>
+        <div class="card-shadow"></div>
+    </div>
+
+    <div class="card-container">
+        <div class="card u-clearfix" style="height:520px;">
+            <div class="card-body">
+                <span class="card-number card-circle subtle">04</span>
+                <h2 class="card-title">The Circle of Fifths</h2>
+                <span class="card-description subtle">Put your chords knowledge to good use and reach "Harmony". Pun intended. The Circle of Fifths will teach you how to put together harmonies and build the foundations of music making.</span>
+                <div class="card-read extra-button" ><a asp-controller="CircleOfFifths" asp-action="Index" style="font-size: 1.3em; text-decoration: none; color: white; ">Go to lesson</a></div>
+            </div>
+            <img src="/Images/Lessons/4.jpg" alt="" class="card-media" />
+        </div>
+        <div class="card-shadow"></div>
+    </div>
+
+</div>
+
+<a asp-controller="Ends" asp-action="Index"><img src="/Images/logoutButton.png" alt="" /></a>

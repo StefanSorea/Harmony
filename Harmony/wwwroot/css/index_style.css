@@ -1,0 +1,70 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+#background {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+
+
+#background img {
+    position: absolute;
+    top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        min-width: 50%;
+        min-height: 50%;
+}
+
+#registerButton {
+    position: absolute;
+    left: 591px;
+    top: 720px;
+    width: 240px;
+    height: 85px;
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+
+    font-size: 0;
+
+}
+
+
+
+#loginButton {
+    position: absolute;
+    left: 1129px;
+    top: 720px;
+    width: 201px;
+    height: 85px;
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+
+    font-size: 0;
+}
+
+#registerButton:hover {
+    background: url("/Images/registerButton.png");
+}
+
+#loginButton:hover {
+    background: url("/Images/loginButton.png");
+}
+
+

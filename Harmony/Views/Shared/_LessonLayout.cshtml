@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/index_style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/circleOfFifths_style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="icon" href="@Url.Content("~/Images/favicon.ico")" />
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+
+<body>
+    <div id="main-container">
+        @RenderBody()
+    </div>
+
+    <div class="logout-button" style="position:fixed; bottom:0; right:0; padding: 10px">
+        <a asp-controller="End" asp-action="End"><img src="/Images/logoutButton.png" alt="" /></a>
+    </div>
+    
+
+</body>
+
+
+@await RenderSectionAsync("Scripts", required: false)
+
+
+
+
+</html>
