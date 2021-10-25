@@ -43,19 +43,19 @@ namespace Harmony.Controllers
 
             var x = User;
 
-            List<Util.Harmony> initialHarmonies;
+            List<CircleOfFifthsHarmony> initialHarmonies;
 
             if (isMagic)
             {
-                initialHarmonies = HarmonyGenerator.GenerateMagicHarmonies(numberOfChords, scale);
+                initialHarmonies = HarmonyFactory.GenerateMagicHarmonies(numberOfChords, scale); 
             }
             else {
-                initialHarmonies = HarmonyGenerator.GenerateHarmonies(numberOfChords, scale);
+                initialHarmonies = HarmonyFactory.GenerateHarmonies(numberOfChords, scale);
             }
             
             var harmonyViewModels = new List<HarmonyViewModel>();
 
-            foreach (Util.Harmony h in initialHarmonies) {
+            foreach (CircleOfFifthsHarmony h in initialHarmonies) {
                 
                 if(h.NumberOfChords == numberOfChords) {
 
@@ -75,8 +75,7 @@ namespace Harmony.Controllers
                 
             }
 
-            ViewData.Model = harmonyViewModels;
-            return View();
+            return View(harmonyViewModels);
         }
 
 

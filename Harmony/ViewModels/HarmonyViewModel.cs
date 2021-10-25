@@ -11,7 +11,7 @@ namespace Harmony.ViewModels
         public int Id { get; set; }
         public string UserId { get; set; }
 
-        public List<string> Chords;
+        public List<string> Chords { get; set; }
 
         public int NumberOfChords { get; set; }
 
