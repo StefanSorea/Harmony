@@ -53,9 +53,9 @@ $('.buttonus').on('click', function () {
 
                     harmonyContainer += '<div class="favorite-button" style="width: 45px; height: 45px; margin-left: 970px; margin-top: -94px;">';
                     harmonyContainer += '<a onclick=" Swal.fire(';
-                    harmonyContainer += '"Sweet!",';
-                    harmonyContainer += '"You have added the Harmony to your favorites!",';
-                    harmonyContainer += '"success"';
+                    harmonyContainer += "'Sweet!',";
+                    harmonyContainer += "'You have added the Harmony to your favorites!',";
+                    harmonyContainer += "'success'";
                     harmonyContainer += ')"><img src="/Images/star.png" alt="" style="width:45px; height:45px" /></a>';
                     harmonyContainer += '</div>';
                     harmonyContainer += '</div>';
