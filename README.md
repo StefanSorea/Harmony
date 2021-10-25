@@ -60,7 +60,7 @@
 
 <p align="left">
     <br />
-    Harmony is a web app that offers amateurs and experienced musicians alike tools to learn music theory and create musical compositions, and to store and share their creations.
+    Harmony is a web app that offers amateurs and experienced musicians alike tools to learn music theory and create musical compositions, to store and share their creations.
 
    Harmony offers lessons that have 3 components:
 1. The first component describes a musical concept. This is the "documentation" part of the lesson.
