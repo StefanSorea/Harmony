@@ -14,7 +14,7 @@ namespace Harmony.Controllers
     public class CircleOfFifthsAPI : Controller
     {
 
-        public JsonResult GetHarmonies(int numberOfChords = 4, string scale = "C", bool isMagic = true)
+        public JsonResult GetHarmonies(int numberOfChords = 4, string scale = "C", bool isMagic = false)
         {
 
             List<CircleOfFifthsHarmony> initialHarmonies;
