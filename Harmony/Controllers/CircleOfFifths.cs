@@ -38,7 +38,7 @@ namespace Harmony.Controllers
 
         [Authorize]
         //GET/?
-        public IActionResult Index(int numberOfChords = 4, string scale = "C", bool isMagic = true)
+        public IActionResult Index(int numberOfChords = 4, string scale = "C", bool isMagic = false)
         {
 
             var x = User;
