@@ -258,7 +258,6 @@ button.swal2-confirm.swal2-styled:focus {
 
 input:checked + .slider {
     background-color: #2196F3;
-    checked
 }
 
 input:focus + .slider {

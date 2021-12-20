@@ -16,7 +16,7 @@ namespace Harmony.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Harmony.Models.HarmonyModel", b =>
@@ -38,10 +38,13 @@ namespace Harmony.Data.Migrations
                     b.Property<string>("FourthChord")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool?>("IsMagic")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Key")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NumberOfChords")
+                    b.Property<int?>("NumberOfChords")
                         .HasColumnType("int");
 
                     b.Property<string>("SecondChord")

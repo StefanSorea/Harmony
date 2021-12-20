@@ -9,12 +9,21 @@ using Microsoft.AspNetCore.Identity;
 using Harmony.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Harmony.Data;
+using System.Text.Json;
 
 namespace Harmony.Controllers
 {
 
     public class CircleOfFifths : Controller
     {
+
+        private readonly ApplicationDbContext _context;
+
+        public CircleOfFifths(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         public class AccountController : Controller
         {
@@ -77,6 +86,43 @@ namespace Harmony.Controllers
 
             return View(harmonyViewModels);
         }
+
+        [HttpPost]
+        public async Task<NoContentResult> AddToFavourites([FromBody] string jsonHarmony) {
+
+            HarmonyModel harmonyToBeAdded = JsonSerializer.Deserialize<HarmonyModel>(jsonHarmony);
+
+            harmonyToBeAdded.UserId = "2af8cf83-c6e2-4b26-8421-7ef43a90a62b";
+            
+            _context.Add(harmonyToBeAdded);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+
+        //public async Task<NoContentResult> AddToFavourites(int numberOfChords = 0, string scale = null, bool isMagic = false, string firstChord = null, string secondChord = null, string thirdChord = null, string fourthChord = null, string fifthChord = null, string sixthChord = null, string seventhChord = null, string eigthChord = null)
+        //{
+
+        //    HarmonyModel harmonyToBeAdded = new HarmonyModel();
+
+        //    harmonyToBeAdded.UserId = "2af8cf83-c6e2-4b26-8421-7ef43a90a62b";
+        //    harmonyToBeAdded.NumberOfChords = numberOfChords;
+        //    harmonyToBeAdded.Key = scale;
+        //    harmonyToBeAdded.IsMagic = isMagic;
+        //    harmonyToBeAdded.FirstChord = firstChord;
+        //    harmonyToBeAdded.SecondChord = secondChord;
+        //    harmonyToBeAdded.ThirdChord = thirdChord;
+        //    harmonyToBeAdded.FourthChord = fourthChord;
+        //    harmonyToBeAdded.FifthChord = fifthChord;
+        //    harmonyToBeAdded.SixthChord = sixthChord;
+        //    harmonyToBeAdded.SeventhChord = seventhChord;
+        //    harmonyToBeAdded.EigthChord = eigthChord;
+
+        //    _context.Add(harmonyToBeAdded);
+        //    await _context.SaveChangesAsync();
+        //    return NoContent();
+        //}
+
 
 
 

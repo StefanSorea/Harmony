@@ -91,6 +91,8 @@ $('.buttonus').on('click', function () {
 
                     harmoniesContainer.innerHTML += harmonyContainer;
 
+                    addFavouriteButtonFunctionality();
+
                    
                 });
             }
@@ -157,6 +159,8 @@ $('.buttonus').on('click', function () {
 
                 });
 
+                addFavouriteButtonFunctionality();
+
                 
 
             }
@@ -192,5 +196,72 @@ function addEventListener(svg) {
 
     });
 }
+
+function addFavouriteButtonFunctionality() {
+
+    $('.favorite-button').on('click', function () {
+
+        var chordBody = $(this).parent().first().children().first();
+        var numberOfChords = chordBody.find("p").length;
+
+        var chords = [null, null, null, null, null, null, null, null];
+
+        for (var i = 0; i < numberOfChords; i++) {
+            chords[i] = chordBody.find("p")[i].innerHTML.trim();
+        }
+
+        
+        var scale = $("#scale option:selected").text().trim();
+        var isMagicText = $("#isMagic option:selected").text();
+        var isMagic;
+
+        if (isMagicText == ' Yes ') {
+            isMagic = true;
+        } else {
+            isMagic = false;
+        }
+
+        var myJSON = JSON.stringify({
+            numberOfChords: numberOfChords,
+            scale: scale,
+            isMagic: isMagic,
+            firstChord: chords[0],
+            secondChord: chords[1],
+            thirdChord: chords[2],
+            fourthChord: chords[3],
+            fifthChord: chords[4],
+            sixthChord: chords[5],
+            seventhChord: chords[6],
+            eigthChord: chords[7]
+        });
+
+        console.log(myJSON);
+
+
+        $.ajax({
+
+            type: 'POST',
+            async: true,
+            url: 'https://localhost:44383/CircleOfFifths/AddToFavourites',
+            data: { '': myJSON },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (status) {
+            },
+
+            error: function (req, status, error) {
+                console.log(status + error.Message);
+            }
+
+
+        })
+
+
+    });
+
+}
+
+addFavouriteButtonFunctionality();
+
 
 

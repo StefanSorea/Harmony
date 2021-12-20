@@ -482,3 +482,9 @@ C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\refs\Windows
 C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Angular-Harmony\angular.json
+C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Angular-Harmony\package-lock.json
+C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Angular-Harmony\package.json
+C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Angular-Harmony\tsconfig.app.json
+C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Angular-Harmony\tsconfig.json
+C:\Users\prietenC\Desktop\kata-uri\Harmony\Harmony\bin\Debug\net5.0\Angular-Harmony\tsconfig.spec.json
