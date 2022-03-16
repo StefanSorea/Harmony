@@ -13,7 +13,7 @@
 
   <div class="sidebar_menu">
       <div class="logo">
-          <a href="#" style="font-size: 1.45em;">Circle of Fifths </a>
+          <a href="#" style="font-size: 1.45em;">My Favourites </a>
       </div>
 
       <div class="btn_two">
@@ -21,14 +21,19 @@
               <i class="fas fa-times" style=" position: absolute; margin-top: -58px; "></i>
           </label>
       </div>
+
       <div class="menu">
+
+        <form [formGroup]="filterForm">
+
+          <h1 style="color:azure; margin-left: 5rem;">Filters</h1>
 
           <ul>
               <li>
-                  <i class="fas fa-link"></i>
                   <label for="scale" style="font-size: 1.3em;">Scale: </label>
                   <br />
-                  <select id="scale" name="scale" style="font-size: 1.3em; margin-left: 1.637em;">
+                  <select formControlName="key" id="scale" name="scale" style="font-size: 1.3em; margin-left: 1.637em;">
+                      <option value=""> Any </option>
                       <option value="C"> C </option>
                       <option value="C#"> C# </option>
                       <option value="D"> D </option>
@@ -59,9 +64,9 @@
               </li>
 
               <li>
-                  <i class="fas fa-qrcode"></i>
                   <label for="numberOfChords" style="font-size: 1.3em;">Number of chords:</label>
-                  <select id="numberOfChords" name="numberOfChords" style="font-size: 1.3em; margin-left: 1.637em;">
+                  <select formControlName="numberOfChords" id="numberOfChords" name="numberOfChords" style="font-size: 1.3em; margin-left: 1.637em;">
+                      <option value=""> Any </option>
                       <option value=2> 2 </option>
                       <option value=3> 3 </option>
                       <option value=4> 4 </option>
@@ -71,46 +76,118 @@
               </li>
 
               <li>
-                  <i class="fas fa-stream"></i>
                   <label for="isMagic" style="font-size: 1.3em;">Is a magic chord:</label>
-                  <select id="isMagic" name="isMagic" style="font-size: 1.3em; margin-left: 1.637em;">
-                      <option value=true> Yes </option>
-                      <option value=false> No </option>
+                  <select formControlName="isMagic" id="isMagic" name="isMagic" style="font-size: 1.3em; margin-left: 1.637em;">
+                      <option value=""> Any </option>
+                      <option [ngValue]= true> Yes </option>
+                      <option [ngValue]= false> No </option>
                   </select>
               </li>
 
+              <h1 style="color:azure; margin-left: 1.9rem; font-size: 1.7em;">View Modes</h1>
+
               <li>
-                  <i class="fas fa-times"></i>
                   <label for="switchToGuitarChords" style="font-size: 1.3em;">Guitar mode:</label>
                   <label id="switchToGuitarChords" name="switchToGuitarChords" class="switchToGuitarChords">
-                      <input id="switchToGuitarChordsCheckbox" type="checkbox">
+                      <input id="switchToGuitarChordsCheckbox" type="checkbox" (change)="toggleGuitarMode($event)">
+
                       <span class="slider round"></span>
                   </label>
               </li>
-
-
           </ul>
 
-          <div class="buttonus">
-              <input id="generateButton" value="" />
-          </div>
-
-
-      </div>
-      <div class="social_media">
-          <ul>
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-youtube"></i></a>
-          </ul>
+        </form>
       </div>
   </div>
+
+
+
 </div>
 
-<div class="my-favorites-button" style="position:fixed; top:0; right:0; padding: 10px">
-  <a asp-controller="End" asp-action="Index"><img src="../assets/myFavoritesButton.png" alt="" style="  " /></a>
+
+
+<div id="harmonies-container">
+
+  <ng-container *ngIf=" !guitarModeOn ; else elseBlock">
+
+    <ng-container *ngFor="let harmony of myFavourites">
+      <div class="harmony-container">
+
+
+        <div class="chord-body">
+
+          <ng-container *ngFor="let currentChord of harmony.chords">
+            <p class="chord" style="display: inline; font-size:8em">{{currentChord}}</p>
+          </ng-container>
+
+
+        </div>
+
+        <div class="favorite-button" style="width: 45px; height: 45px; margin-left: 970px; margin-top: -94px;" (click)="delete(harmony.id)">
+
+            <a onclick=" Swal.fire(
+              'Harmony deleted!',
+              '',
+              'success'
+              )">
+            <img src="../assets/delete.png" alt="" style="width:45px; height:45px" /></a>
+
+
+        </div>
+
+
+      </div>
+    </ng-container>
+
+
+
+  </ng-container>
+
+  <ng-template #elseBlock>
+
+
+
+    <ng-container *ngFor="let currentGuitarHarmony of myFavouriteGuitarHarmonies">
+
+      <div class="harmony-container">
+
+
+        <div class="chord-body">
+
+          <ng-container *ngFor="let currentGuitarChord of currentGuitarHarmony.harmonies; let i = index">
+            <chord-container>
+
+
+              <chord attr.key="{{currentGuitarChord.key}}" attr.positions ="{{currentGuitarChord.positions}}" attr.fingers ="{{currentGuitarChord.fingers}}" attr.variation="{{currentGuitarChord.variation}}" class="rendered-chord"   (click)="switchChord(currentGuitarHarmony.id, i)"> </chord>
+
+            </chord-container>
+          </ng-container>
+
+
+        </div>
+
+        <div class="favorite-button" style="width: 45px; height: 45px; margin-left: 970px; margin-top: -94px;" (click)="delete(currentGuitarHarmony.id)">
+
+            <a onclick=" Swal.fire(
+              'Harmony deleted!',
+              '',
+              'success'
+              )">
+            <img src="../assets/delete.png" alt="" style="width:45px; height:45px" /></a>
+
+
+        </div>
+
+
+      </div>
+    </ng-container>
+
+
+  </ng-template>
+
+
 </div>
+
 
 <div class="logout-button" style="position:fixed; bottom:0; right:0; padding: 10px">
   <a> <img src="../assets/logoutButton.png" alt="" /></a>

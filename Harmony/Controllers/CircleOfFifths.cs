@@ -11,46 +11,44 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Harmony.Data;
 using System.Text.Json;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace Harmony.Controllers
 {
+
+    public static class ClaimsPrincipalExtensions
+    {
+        public static string GetUserId(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
+    }
 
     public class CircleOfFifths : Controller
     {
 
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public CircleOfFifths(ApplicationDbContext context)
+        public CircleOfFifths(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public class AccountController : Controller
-        {
-
-            private readonly UserManager<User> _userManager;
-
-            public AccountController(UserManager<User> userManager)
-            {
-                _userManager = userManager;
-            }
-
-            [HttpGet]
-            public async Task<string> GetCurrentUserId()
-            {
-                User usr = await GetCurrentUserAsync();
-                return usr?.Id;
-            }
-
-            private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-        }
-
+        //GET USER ID
+       
         [Authorize]
         //GET/?
         public IActionResult Index(int numberOfChords = 4, string scale = "C", bool isMagic = false)
         {
 
-            var x = User;
 
             List<CircleOfFifthsHarmony> initialHarmonies;
 
@@ -87,36 +85,12 @@ namespace Harmony.Controllers
             return View(harmonyViewModels);
         }
 
-        [HttpPost]
-        public async Task<NoContentResult> AddToFavourites([FromBody] string jsonHarmony) {
+        //[HttpPost]
+        //public async Task<NoContentResult> AddToFavourites([FromBody] string jsonHarmony) {
 
-            HarmonyModel harmonyToBeAdded = JsonSerializer.Deserialize<HarmonyModel>(jsonHarmony);
-
-            harmonyToBeAdded.UserId = "2af8cf83-c6e2-4b26-8421-7ef43a90a62b";
-            
-            _context.Add(harmonyToBeAdded);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-
-
-        //public async Task<NoContentResult> AddToFavourites(int numberOfChords = 0, string scale = null, bool isMagic = false, string firstChord = null, string secondChord = null, string thirdChord = null, string fourthChord = null, string fifthChord = null, string sixthChord = null, string seventhChord = null, string eigthChord = null)
-        //{
-
-        //    HarmonyModel harmonyToBeAdded = new HarmonyModel();
+        //    HarmonyModel harmonyToBeAdded = JsonSerializer.Deserialize<HarmonyModel>(jsonHarmony);
 
         //    harmonyToBeAdded.UserId = "2af8cf83-c6e2-4b26-8421-7ef43a90a62b";
-        //    harmonyToBeAdded.NumberOfChords = numberOfChords;
-        //    harmonyToBeAdded.Key = scale;
-        //    harmonyToBeAdded.IsMagic = isMagic;
-        //    harmonyToBeAdded.FirstChord = firstChord;
-        //    harmonyToBeAdded.SecondChord = secondChord;
-        //    harmonyToBeAdded.ThirdChord = thirdChord;
-        //    harmonyToBeAdded.FourthChord = fourthChord;
-        //    harmonyToBeAdded.FifthChord = fifthChord;
-        //    harmonyToBeAdded.SixthChord = sixthChord;
-        //    harmonyToBeAdded.SeventhChord = seventhChord;
-        //    harmonyToBeAdded.EigthChord = eigthChord;
 
         //    _context.Add(harmonyToBeAdded);
         //    await _context.SaveChangesAsync();
@@ -124,11 +98,28 @@ namespace Harmony.Controllers
         //}
 
 
+        public async Task<NoContentResult> AddToFavourites(int numberOfChords = 0, string scale = null, bool isMagic = false, string firstChord = null, string secondChord = null, string thirdChord = null, string fourthChord = null, string fifthChord = null, string sixthChord = null, string seventhChord = null, string eigthChord = null)
+        {
+            // 2af8cf83-c6e2-4b26-8421-7ef43a90a62b
+            HarmonyModel harmonyToBeAdded = new HarmonyModel();
 
+            harmonyToBeAdded.UserId = _userManager.GetUserId(HttpContext.User);
+            harmonyToBeAdded.NumberOfChords = numberOfChords;
+            harmonyToBeAdded.Key = scale;
+            harmonyToBeAdded.IsMagic = isMagic;
+            harmonyToBeAdded.FirstChord = firstChord;
+            harmonyToBeAdded.SecondChord = secondChord;
+            harmonyToBeAdded.ThirdChord = thirdChord;
+            harmonyToBeAdded.FourthChord = fourthChord;
+            harmonyToBeAdded.FifthChord = fifthChord;
+            harmonyToBeAdded.SixthChord = sixthChord;
+            harmonyToBeAdded.SeventhChord = seventhChord;
+            harmonyToBeAdded.EigthChord = eigthChord;
 
-
-
-
+            _context.Add(harmonyToBeAdded);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
 
     }
 }

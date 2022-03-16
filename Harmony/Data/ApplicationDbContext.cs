@@ -13,5 +13,10 @@ namespace Harmony.Data
             : base(options)
         {
         }
+
+       
+
+        public DbSet<HarmonyModel> HarmonyModel { get; set; }
+        public DbSet<JwtModel> JwtModel { get; set; }
     }
 }

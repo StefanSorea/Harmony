@@ -39,6 +39,9 @@ var sliderOnOf = 0;
 
 var chordNames = Object.keys(CHORD_COLLECTION);
 
+$("#isMagic").val("false").change();
+$("#numberOfChords").val("4").change();
+
 slider.on('click', function () {
     if (sliderOnOf == 0) {
         $('#switchToGuitarChordsCheckbox').prop('checked', true);
@@ -201,24 +204,42 @@ function addFavouriteButtonFunctionality() {
 
     $('.favorite-button').on('click', function () {
 
-        var chordBody = $(this).parent().first().children().first();
-        var numberOfChords = chordBody.find("p").length;
+        if (checkBox.is(':checked') == false) {
 
-        var chords = [null, null, null, null, null, null, null, null];
+            var chordBody = $(this).parent().first().children().first();
+            var numberOfChords = chordBody.find("p").length;
 
-        for (var i = 0; i < numberOfChords; i++) {
-            chords[i] = chordBody.find("p")[i].innerHTML.trim();
-        }
+            var chords = [null, null, null, null, null, null, null, null];
 
-        
-        var scale = $("#scale option:selected").text().trim();
-        var isMagicText = $("#isMagic option:selected").text();
-        var isMagic;
+            for (var i = 0; i < numberOfChords; i++) {
+                chords[i] = chordBody.find("p")[i].innerHTML.trim();
+            }
 
-        if (isMagicText == ' Yes ') {
-            isMagic = true;
+
+            var scale = $("#scale option:selected").text().trim();
+            var isMagicText = $("#isMagic option:selected").text();
+            var isMagic;
+
+            if (isMagicText == ' Yes ') {
+                isMagic = true;
+            } else {
+                isMagic = false;
+            }
+
+           
         } else {
-            isMagic = false;
+
+            var chordBody = $(this).parent().first().children().first();
+            var numberOfChords = chordBody.find("chord-container").length;
+
+            var chords = [null, null, null, null, null, null, null, null];
+
+            var scale = $("#scale option:selected").text().trim();
+
+            for (var i = 0; i < numberOfChords; i++) {
+                chords[i] = chordBody.find("chord")[i].getAttribute("key");
+            }
+
         }
 
         var myJSON = JSON.stringify({
@@ -237,24 +258,42 @@ function addFavouriteButtonFunctionality() {
 
         console.log(myJSON);
 
-
         $.ajax({
 
             type: 'POST',
             async: true,
             url: 'https://localhost:44383/CircleOfFifths/AddToFavourites',
-            data: { '': myJSON },
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
+            data: {
+                numberOfChords: numberOfChords,
+                scale: scale,
+                isMagic: isMagic,
+                firstChord: chords[0],
+                secondChord: chords[1],
+                thirdChord: chords[2],
+                fourthChord: chords[3],
+                fifthChord: chords[4],
+                sixthChord: chords[5],
+                seventhChord: chords[6],
+                eigthChord: chords[7]
+            },
             success: function (status) {
             },
 
             error: function (req, status, error) {
                 console.log(status + error.Message);
+                
             }
 
 
         })
+
+        console.log('fuck');
+        var parent = $(this).closest('.harmony-container');
+        console.log(parent);
+        $(this).remove();
+        parent.append('<div style="width: 45px; height: 45px; margin-left:970px; margin-top:-94px;position: absolute;"> <a><img src="/Images/love.png" alt="" style="width:45px; height:45px" /> </a></div>');
+
+
 
 
     });

@@ -69,6 +69,28 @@ namespace Harmony.Data.Migrations
                     b.ToTable("HarmonyModel");
                 });
 
+            modelBuilder.Entity("Harmony.Models.JwtModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Jwt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
+                    b.ToTable("JwtModel");
+                });
+
             modelBuilder.Entity("Harmony.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -282,6 +304,15 @@ namespace Harmony.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("Harmony.Models.JwtModel", b =>
+                {
+                    b.HasOne("Harmony.Models.User", "User")
+                        .WithOne("JwtModel")
+                        .HasForeignKey("Harmony.Models.JwtModel", "UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -335,6 +366,8 @@ namespace Harmony.Data.Migrations
 
             modelBuilder.Entity("Harmony.Models.User", b =>
                 {
+                    b.Navigation("JwtModel");
+
                     b.Navigation("MyHarmonies");
                 });
 #pragma warning restore 612, 618

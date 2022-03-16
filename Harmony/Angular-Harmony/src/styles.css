@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+button.swal2-confirm.swal2-styled {
+  background-color: #265d6e;
+}
+
+button.swal2-confirm.swal2-styled:focus {
+  outline-color: #265d6e;
+  box-shadow: none;
+}
+
+.swal2-styled.swal2-confirm {
+  outline-color: #265d6e;
+}

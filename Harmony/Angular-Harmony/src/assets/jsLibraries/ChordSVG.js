@@ -28,7 +28,7 @@
  * SOFTWARE.
  */
 
-var ChordSVG = (function () {
+export let ChordSVG = (function () {
   if (typeof SVG === "undefined" || SVG === null) {
     console.error(
       "ChordSVG: SVG.js requirement not satisfied, SVG  is undefined!"
@@ -327,7 +327,7 @@ var ChordSVG = (function () {
   //example: <chord positions="X02220" fingers="--222-"></chord>
   var Replace = function (baseEl) {
       baseEl = baseEl || "body";
-      
+
 
     var renderedChords = document
       .querySelector(baseEl)
@@ -438,5 +438,3 @@ var ChordSVG = (function () {
     singularReplace: SingularReplace,
   };
 })();
-
-var chords = ChordSVG;

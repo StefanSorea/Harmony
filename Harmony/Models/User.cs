@@ -12,5 +12,7 @@ namespace Harmony.Models
         public string UserDisplayName { get; set; }
         public ICollection<HarmonyModel> MyHarmonies { get; set; }
 
+        public JwtModel JwtModel { get; set;}
+
     }
 }
