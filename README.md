@@ -130,7 +130,6 @@ Any computer belonging to millennia III will work.
 You should first register an account and log in
 
 ![](readme_images/1.png)
-![](readme_images/2.png)
 ![](readme_images/3.png)
 
 After that, you should choose the lesson that you want to learn
